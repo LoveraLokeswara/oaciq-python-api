@@ -9,4 +9,5 @@ python-multipart==0.0.6
 flask==2.3.3
 reportlab==4.0.4
 Werkzeug==2.3.7
-supabase==2.15.0 
+supabase==2.15.0
+gunicorn==21.2.0 
