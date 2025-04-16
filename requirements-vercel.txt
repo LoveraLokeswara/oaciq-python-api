@@ -2,6 +2,7 @@ fastapi==0.104.1
 uvicorn==0.24.0
 python-dotenv==1.0.0
 requests==2.31.0
+python-multipart==0.0.6
 # Minimal dependencies for the proxy API
 # Removed: PyMuPDF, pandas, openpyxl, flask, reportlab, supabase
 # These packages make the deployment too large for Vercel 

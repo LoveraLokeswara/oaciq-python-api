@@ -11,5 +11,8 @@
       "src": "/(.*)",
       "dest": "vercel_api.py"
     }
-  ]
+  ],
+  "env": {
+    "PROCESSING_API_URL": "https://oaciq-python-api-production.up.railway.app"
+  }
 } 

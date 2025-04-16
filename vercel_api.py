@@ -19,16 +19,19 @@ app.add_middleware(
 )
 
 # URL of your full API hosted elsewhere (could be a cloud VM, Heroku, etc.)
-PROCESSING_API_URL = os.getenv("PROCESSING_API_URL", "https://your-full-api-url.com")
+PROCESSING_API_URL = os.getenv("PROCESSING_API_URL", "https://oaciq-python-api-production.up.railway.app")
 
 @app.post("/analyze")
-async def analyze_document(request: dict):
+async def analyze_document(request: Request):
     """
     Proxy endpoint that forwards requests to the full API implementation
     """
     try:
+        # Get the raw request body
+        body = await request.json()
+        
         # Forward the request to the full API
-        response = requests.post(f"{PROCESSING_API_URL}/analyze", json=request)
+        response = requests.post(f"{PROCESSING_API_URL}/analyze", json=body)
         
         # Check if the request was successful
         if response.status_code != 200:
@@ -78,7 +81,7 @@ async def convert_text_to_pdf(request: Request):
 @app.get("/health")
 async def health_check():
     """Simple health check endpoint"""
-    return {"status": "ok", "vercel": True}
+    return {"status": "ok", "vercel": True, "api_url": PROCESSING_API_URL}
 
 # This is required for Vercel deployment
 # The app object needs to be directly accessible at the module level 
